@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>House Music Builds a House</title>
+
+  <!-- Architects Daughter: a hand-lettering font that matches the pencil drawing. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+
+  <!-- rough.js (UMD build) puts a global `rough` on window. -->
+  <script src="https://cdn.jsdelivr.net/npm/roughjs@4.6.6/bundled/rough.js"></script>
+</head>
+<body>
+  <header>
+    <h1>House Music Builds a House</h1>
+    <p class="tagline">Dance on the beat. Your footsteps become walls. Hit <kbd>Space</kbd> on the drop.</p>
+  </header>
+
+  <section class="controls">
+    <button id="camera-btn" type="button">Start camera</button>
+
+    <label class="file">
+      <input id="mp3-input" type="file" accept="audio/mpeg,audio/*">
+      <span id="mp3-label">Load MP3…</span>
+    </label>
+
+    <button id="play-btn" type="button">Play</button>
+
+    <label class="bpm">
+      BPM <input id="bpm-input" type="number" min="60" max="200" step="1" value="124">
+    </label>
+    <button id="tap-btn" type="button" title="Tap along to the beat (or press T)">Tap tempo</button>
+
+    <div class="beat-dots" id="beat-dots" aria-label="Beat in bar">
+      <span></span><span></span><span></span><span></span>
+    </div>
+
+    <span class="spacer"></span>
+    <button id="clear-btn" type="button">Clear</button>
+    <button id="export-btn" type="button">Export PNG</button>
+  </section>
+
+  <main>
+    <figure class="panel">
+      <div class="stage camera-stage">
+        <video id="video" playsinline muted></video>
+        <canvas id="pose-overlay"></canvas>
+        <p class="placeholder" id="camera-placeholder">Camera off. Stand back far enough that your feet are in frame.</p>
+      </div>
+      <figcaption id="status">Loading…</figcaption>
+    </figure>
+
+    <figure class="panel">
+      <div class="stage plan-stage">
+        <canvas id="plan"></canvas>
+        <canvas id="plan-cursor"></canvas>
+      </div>
+      <figcaption id="plan-stats">0 walls · 0 rooms · 0 double-height</figcaption>
+    </figure>
+  </main>
+
+  <footer>
+    <kbd>Space</kbd> mark the drop (double-height room) &nbsp;·&nbsp; <kbd>T</kbd> tap tempo &nbsp;·&nbsp; <kbd>P</kbd> play / pause
+  </footer>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
